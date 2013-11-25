@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}New Support Request{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+	<h1>Submit new request</h1>
+	<br />
+	<div class="container">
+		<form id="category_form" method="post" action="/wrench/add_ticket/">
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }} <br />
+			{% endfor %}
+
+			<input type="submit" name="submit" value="Submit" />
+		</form>
+	</div>
+</div>
+
+{% endblock %}

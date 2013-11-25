@@ -1,0 +1,27 @@
+{% extends 'torque/base.html' %}
+
+{% block title %}{{ category_name }}{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+<h1>{{ category_name }}</h1>
+	{% if category %}
+		{% if tests %}
+			<ul>
+				{% for test in tests %}
+					<li><a href="/torque/test/{{ test.testid }}">{{ test.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>No tests currently in category.</strong>				
+		{% endif %}
+		{% if user.is_authenticated %}
+			<a href="/torque/category/{{category_name_url}}/add_test/">Add a Test</a>
+		{% endif %}
+	{% else %}
+		<h2>The specified category {{ category_name }} does not exist!</h2></br>
+		<a href="/torque/add_category/">Add this category</a>
+	{% endif %}
+
+</div>
+{% endblock %}

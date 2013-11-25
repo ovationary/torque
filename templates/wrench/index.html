@@ -1,0 +1,40 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+	Wrench: Application Health	
+	<div class="row-fluid">
+		<div class="span12">
+			<ul>
+				<li><h2><a href="#">NMS </a></h2><span class="label">0 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+				<li><h2><a href="#">ORMS </a></h2><span class="label">4 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+				<li><h2><a href="#">XSW </a></h2><span class="label">2 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		<h2>Service Functions</h2>
+		<ul>
+			<li><a href="/wrench/new/">New Service Request</a></li>
+			<li><a href="/wrench/view/">View All Service Requests</a></li>
+			<li><a href="/wrench/request/new/">New Support Request</a></li>
+			<li><a href="/wrench/request/new/">Contact Vendort</a></li>
+		</ul>
+	</div>
+
+	<div class="span6">
+		<h2>Customer Portal</h2>
+		<ul>
+			<li><a href="/wrench/ticket/new/">Submit Problem Report</a></li>
+			<li><a href="/wrench/request/new/">Check Status of Existing Request</a></li>
+		</ul>
+	</div>
+</div>
+{% endblock %}
+

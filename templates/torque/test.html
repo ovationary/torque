@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ test_id }}{% endblock %}
+
+
+{% block body_block %}
+<div class="hero-unit">
+	{% if test %}
+		<h2>{{ test.testid }}</h2>
+		<h2>Title: {{ test.title }}</h2>
+		<p class="label">Description:</p><p>{{ test.description }}</p>
+		<p class="label">Procedure:</p><p>{{ test.procedure }}</p>
+		{% if steps %}
+			<p>
+				<span class="label">Steps:</span>
+				{% for step in steps %}
+					<ul>
+						<li>#{{ step.stepnum }}: {{ step.instruction }}</li>
+					</ul>
+				{% endfor %}
+			</p>
+		{% endif %}
+		<p class="label">Results:</p><p>{{ test.results }}</p>
+	{% else %}
+		<strong>No test definition.</strong>				
+	{% endif %}
+	{% if user.is_authenticated %}
+			<a href="/torque/add_test/" class="btn btn-primary">Add New Test</a>
+			<a href="/torque/{{ test.testid }}/run/" class="btn btn-primary">Run Test</a>
+			<a href="/torque/test/{{ test.testid }}/edit/" class="btn btn-primary">Edit Test</a>
+			<div class="clear"></div>
+			<button id="pass_test" data-catid="{{ test.testid }}" class="btn btn-primary" type="button">Pass</button>
+	{% endif %}	
+</div>
+{% endblock %}

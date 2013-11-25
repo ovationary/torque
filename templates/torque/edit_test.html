@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %}Edit Test{% endblock %}
+
+
+{% block body_block %}
+<div class="hero-unit">
+	<h1>Edit Test</h1>
+	<br />
+	<div class="container">
+		<form id="category_form" method="post" action="/torque/edit_test/">
+			{% csrf_token %}
+			{% for hidden in form.hidden_fields %}
+				{{ hidden }}
+			{% endfor %}
+
+			{% for field in form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text }}
+				{{ field }} <br />
+			{% endfor %}
+
+			<input type="submit" name="submit" value="Save" />
+		</form>
+	</div>
+</div>
+
+{% endblock %}

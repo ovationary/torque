@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}All ORMS Tickets{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+<h1>ORMS Tickets</h1>
+	{% if tickets %}
+		{% for ticket in tickets %}
+			<table>
+				<tr>
+					<td>{{ ticket.summary }}</td>
+					<td>{{ ticket.description }}</td>
+				</tr>
+			</table>
+		{% endfor %}
+		{% if user.is_authenticated %}
+			<a href="/wrench/new/">Submit New Request</a>
+		{% endif %}
+	{% else %}
+		<h2>There are no tickets in progress right now</h2></br>
+	{% endif %}
+</div>
+{% endblock %}

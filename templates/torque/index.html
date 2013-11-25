@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Main{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+	NMS Test Repository.
+</div>	
+
+<div class="row-fluid">
+	<div class="span6">
+		<h2>NMS Functional Areas</h2>
+		{% if categories %}
+			<ul>
+				{% for category in categories %}
+				<li><a href="/torque/category/{{ category.url }}">{{ category.name }}</a></li>
+				{% endfor %}
+			</ul>
+		{% else %}
+			<strong>No categories at present.</strong>
+		{% endif %}
+	</div>
+
+	<div class="span6">
+		<h2>Top Five Tests</h2>
+		{% if tests %}
+			<ul>
+				{% for test in tests %}
+				<li><a href="/torque/test/{{ test.testid }}">{{ test.title }}</a> - {{ test.category }} </li>
+				{% endfor %}
+			</ul>
+		{% else %}
+		<strong>No tests at present.</strong>
+		{% endif %} 
+	</div>
+</div>
+{% endblock %}
+
