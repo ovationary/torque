@@ -62,3 +62,28 @@ def show_ticket(request):
 		pass
 
 	return render_to_response('wrench/view_tickets.html', context_dict, context)	
+
+def show_single_ticket(request, ticket_id):
+	#Request our context from the request passed to us
+	context = RequestContext(request)
+	#Change the underscores in the category name to spaces
+	#URLS don't handle spaces well, so we encode them as underscores
+	#We can then simply replace the underscores with spaces again to get the name.
+
+	#Create a context dictionary which we can pass to the template rendering engine 
+	#We can start by containing the name of thee category passed by the user 
+	context_dict = {}
+	try:
+		#Can we find a category with the given name?
+		#If we can't, the .get() method raises a DoesNotExist exception
+		#So the .get() method returns one model instance or raises an exception.
+		ticket = Ticket.objects.get(id=ticket_id)
+
+		context_dict['ticket'] = ticket 
+		
+	except Ticket.DoesNotExist:
+	#We get here if we didn't find the specified category
+	#Dont' do anything - the template displays the "no category" message for us
+		pass
+
+	return render_to_response('wrench/view_single_ticket.html', context_dict, context)

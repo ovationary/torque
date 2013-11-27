@@ -1,13 +1,12 @@
 {% extends 'base.html' %}
 
-{% block title %}All ORMS Tickets{% endblock %}
+{% block title %}Ticket Details{% endblock %}
 
 {% block body_block %}
 <div class="hero-unit">
-<h1>ORMS Tickets</h1>
+<h1>ORMS Tickets Detail</h1>
 <br />
-	{% if tickets %}
-		
+	{% if ticket %}
 			<table class="table">
 				<thead>
 					<td>#</td>
@@ -16,16 +15,11 @@
 					<td>Date Submitted</td>
 				</thead>
 				<tbody>
-				{% for ticket in tickets %}
 				<tr class="success">
-					<td>{{ forloop.counter }}</td>
 					<td>{{ ticket.summary }}</td>
 					<td>{{ ticket.description }}</td>
 					<td>{{ ticket.date_created }}</td>
-					<td><a href="/wrench/view/{{ ticket.id }}" class="btn">View</a></td>
-					<td><button class="btn">Escalate</button></td>
 				</tr>
-				{% endfor %}
 				</tbody>
 			</table>
 
