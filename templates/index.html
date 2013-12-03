@@ -1,0 +1,53 @@
+
+{% extends 'base.html' %}
+
+{% block title %}Choreo - A Unified IT Management Platform{% endblock %}
+
+{% block body_block %}
+<div class="hero-unit">
+	<h2>Dashboard</h2>	
+	<div class="row-fluid">
+		<div class="span12">
+			<ul>
+				<li><h2><a href="#">NMS </a></h2><span class="label">0 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+				<li><h2><a href="#">ORMS </a></h2><span class="label">4 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+				<li><h2><a href="#">XSW </a></h2><span class="label">2 PROBLEM TICKETS</span><span class="label">4 SERVICE REQUEST</span></li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span4">
+		<div class="well">
+			<h2>Incident Management</h2>
+			<ul>
+				<li><a href="/wrench/new/">New Service Request</a></li>
+				<li><a href="/wrench/view/">View All Service Requests</a></li>
+				<li><a href="/wrench/change/new/">New Change Request</a></li>
+				<li><a href="/wrench/change/new/">View Request Items</a></li>
+				<li><a href="/wrench/change/new/">Approve Request Items (Managers Only)</a></li>
+				<li><a href="/wrench/request/new/">Escalate to Vendor</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="span4">
+		<h2>Problem Management</h2>
+		<ul>
+			<li><a href="/wrench/ticket/new/">Submit Problem Ticket</a></li>
+			<li><a href="/wrench/ticket/view/">Check Status of Existing Request</a></li>
+			<li><a href="/wrench/request/new/">Look up KnowledgeBase</a></li>
+		</ul>
+	</div>
+	<div class="span4">
+		<h2>Change Manager</h2>
+		<ul>
+			<li><a href="/wrench/ticket/new/">Submit Problem Ticket</a></li>
+			<li><a href="/wrench/ticket/view/">Check Status of Existing Request</a></li>
+			<li><a href="/wrench/request/new/">Look up KnowledgeBase</a></li>
+		</ul>
+	</div>
+</div>
+
+
+{% endblock %}

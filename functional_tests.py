@@ -48,3 +48,40 @@ class NewVisitorTest(unittest.TestCase):
 
 if __name__ == '__main__':
 	unittest.main(warnings='ignore')
+
+Incident Management
+
+--Next --
+# Ability to capture the orginator's contact information
+# Ability to assign a priority ranking to a ticket
+# Ability to assign a categorization to a ticket
+# Abiliy to capture certain mandatory details
+# Ability to enforce field validation
+# Ability to capture a summary field for use by listing screens and a detailed field for fully explaninning the incident
+# Ability to assign an incident ticket to an invidivual or a team
+# Ability to capture related incident number
+# Ability to notify a team or individual when they've been assigned a ticket
+# Ability to create a change request within the incident ticket
+
+
+
+- Future --
+# Ability to create incident ticket from email
+# Ability to create an incident from monitoring alert
+# Ability to share a ticket
+# Ability of the system to change the status of a ticket as it progresses towards resolution
+# Ability to auto create child tickets when there is a parent/child relationship
+# Ability for the system to resolve any child or related tickets whent the highest level ticket has been resolved
+# Ability to add attachment to a ticket
+# Ability to display ticket status on all listing screens through the various incident management stages
+# Ability for the high priority incidents to auto generate information status messages at specific intervals
+# Ability to clearly differentiate those incidents to which a Service level Agreement appies
+# Ability to capture solution details
+# Abiltiy to put an incident on hold. Will stop the clock for all SLA calculations
+# Ability to create a problem ticket from the incident ticket, cpaturing all relevant information
+# Ability to hide specific fields from orginator or 3rd party vendor
+# Ability to advise originator that a ticket has been resolved
+# Ability to change ticket status from resolved backt o active status
+# Abiltiy to assign a ticket to a 3rd party vendor
+# Ability to restrict visibility of an incident
+
