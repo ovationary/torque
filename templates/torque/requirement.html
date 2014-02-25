@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ req_id }}{% endblock %}
+
+
+{% block body_block %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="hero-unit">
+				{% if requirement %}
+					<h3><strong>{{ req_id }}</strong></h3>
+					<h2>{{ requirement.name }}</h2>
+					<p class="label label-default">Type: {{ requirement.req_type }}</p>
+					<h3>Description</h3>
+					<p>{{ requirement.description }}</p>
+					<p>
+				{% else %}
+					<strong>No requirement definition.</strong>				
+				{% endif %}
+
+				
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+              <h1 id="tables">Related Tests</h1>
+            </div>
+			<div class="bs-example table-responsive">
+              <table class="table table-striped table-hover ">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Test Name</th>
+                    <th>Column heading</th>
+                    <th>Column heading</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ requirement.test.testid }}</td>
+                    <td>{{ requirement.test.title }}</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                    <td>Column content</td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div><!-- /example -->
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% if user.is_authenticated %}
+						<a href="/torque/requirement/{{ requirement.req_id }}/edit/" class="btn btn-primary">Edit Requirement</a>
+						<button id="pass_test" data-catid="{{ requirement.req_id }}" class="btn btn-primary" type="button">Pass</button>
+			{% endif %}	
+		</div>
+	</div>
+</div>
+{% endblock %}

@@ -1,6 +1,7 @@
 from django import forms
-from torque.models import Test, Category, Set
+from torque.models import Test, Category, Set, Requirement
 from django.contrib.auth.models import User 
+
 
 
 class CategoryForm(forms.ModelForm):
@@ -13,6 +14,10 @@ class CategoryForm(forms.ModelForm):
 		# Provide an association between the ModelForm and a models
 		model = Category
 
+class RequirementForm(forms.ModelForm):
+
+	class Meta:
+		model = Requirement
 
 class TestForm(forms.ModelForm):
 	testid = forms.CharField(max_length=128, help_text="Auto generated Test ID: ")

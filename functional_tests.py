@@ -7,7 +7,19 @@ import unittest
 
 A dark stormy night for ORMS. 100,000 customers out of power, and the ORMS Application starts to hiccup. Dispatcher logs onto
 Choreo and is presented with a simple view for the Customer Support portal. Incident Manager just crashed on her, so she needs to 
-submit a ticket. She clicks on the "Create New Ticket" button.
+submit a ticket. She clicks on the "Create New Ticket" button. From the userid, Choreo knows she's a Dispatcher, and presents
+and ORMS friendly interface (Choreo knows which apps the user has access to). She fills out the details in the form, and hits "Submit".
+The dispatcher receives an email notifying her that the incident has been reported. 
+
+The SCEs are the first line of support for ORMS, and receive an email notification to the SCE Mailbox. the SCE on Shift
+opens the email, clicks on the link and is taken to the Choreo incident report. After reading the incident, the SCE
+can use the Search KnowledgeBase option to see if the solution is known. The solution in this case IS NOT, therefore
+the SCE assigns the ticket to the 2nd level support team, the ORMS ASM. Once the ticket gets assigned to the 2nd level, it 
+becomes a Problem. 
+
+The ASM gets notified via email (or push notification) on his/her mobile app. ASM acknowledges the request, and gets to work. 
+He realizes that the Problem needs to be escalated to the Vendor, therefore he clicks on the "Assign to Vendor" button
+and fills out the details. The Vendor gets an email with a Service Request. 
 
 As the team lead for the ORMS App Support team, Scott logs onto Choreo the first thing in the morning. He's presented with a browser window
 and a Dashboard presenting a visual health status of the ORMS Production Environment, the RFCS for the Day, and the Customer Support portal.
@@ -27,6 +39,18 @@ Choreo app, and submits a support request using the form provided. The support t
 an SMS notification to the on call staff. 
 
 4. Knowledge Management
+
+5. User Rights Management
+
+Requesting access for Environments
+Requesting User account creation
+Requesting Change in User Permissions
+
+6. Compliance Management
+
+7. Work Management
+
+
 
 
 '''

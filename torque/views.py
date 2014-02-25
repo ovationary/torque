@@ -3,8 +3,8 @@
 from django.http import HttpResponse
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from torque.models import Category, Test, Set, Step
-from torque.forms import CategoryForm, TestForm, UserForm
+from torque.models import Category, Test, Set, Step, Requirement
+from torque.forms import CategoryForm, TestForm, UserForm, RequirementForm
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect 
 from django.contrib.auth.decorators import login_required 
@@ -20,7 +20,10 @@ def index(request):
 	for category in category_list:
 		category.url = category.name.replace(' ','_')
 
+	req_list = Requirement.objects.order_by('name')
 	test_list = Test.objects.order_by('title')
+
+	context_dict['requirements']=req_list
 	context_dict['tests'] = test_list
 
 	return render_to_response('torque/index.html', context_dict, context)
@@ -89,6 +92,34 @@ def test(request, test_id):
 
 	return render_to_response('torque/test.html', context_dict, context)
 
+def requirement(request, req_id):
+	#Request our context from the request passed to us
+	context = RequestContext(request)
+	#Change the underscores in the category name to spaces
+	#URLS don't handle spaces well, so we encode them as underscores
+	#We can then simply replace the underscores with spaces again to get the name.
+
+	#Create a context dictionary which we can pass to the template rendering engine 
+	#We can start by containing the name of thee category passed by the user 
+	context_dict = {'req_id': req_id}
+
+	try:
+		#Can we find a category with the given name?
+		#If we can't, the .get() method raises a DoesNotExist exception
+		#So the .get() method returns one model instance or raises an exception.
+		requirement = Requirement.objects.get(req_id=req_id)
+		#Retrieve all of the associated pages.
+		#Note that filter returns >= 1 model instance
+		
+		context_dict['requirement'] = requirement 
+		
+	except Requirement.DoesNotExist:
+	#We get here if we didn't find the specified category
+	#Dont' do anything - the template displays the "no category" message for us
+		pass
+
+	return render_to_response('torque/requirement.html', context_dict, context)
+
 
 
 def add_category(request):
@@ -140,6 +171,27 @@ def add_test(request):
 
 	return render_to_response('torque/add_test.html', {'form':form}, context)
 
+
+def add_requirement(request):
+	context = RequestContext(request)
+	
+	if request.method == 'POST':
+		form = RequirementForm(request.POST)
+
+		if form.is_valid():
+			# This time we cannot commit straight away.
+			# Not all fields are automatically populated!
+			form.save(commit=True)
+
+			#Retrieve the associated category object so we can add it
+			return index(request)
+		else:
+			print form.errors
+	else:
+		form = RequirementForm()
+
+	return render_to_response('torque/add_requirement.html', {'form':form}, context)
+
 def edit_test(request, test_id):
 	context = RequestContext(request)
 	
@@ -160,7 +212,25 @@ def edit_test(request, test_id):
 
 	return render_to_response('torque/edit_test.html', {'form':form}, context)
 
+def edit_requirement(request, req_id):
+	context = RequestContext(request)
+	
+	if request.method == 'POST':
+		form = RequirementForm(request.POST)
 
+		if form.is_valid():
+			# This time we cannot commit straight away.
+			# Not all fields are automatically populated!
+			form.save(commit=True)
+			#Retrieve the associated category object so we can add it
+
+			return index(request)
+		else:
+			print form.errors
+	else:
+		form = RequirementForm(request.GET)
+
+	return render_to_response('torque/edit_requirement.html', {'form':form}, context)
 
 
 def register(request):
