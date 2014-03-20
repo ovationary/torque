@@ -2,7 +2,10 @@ from django.conf.urls import patterns, url
 from torque import views
 
 urlpatterns = patterns('',
-	url(r'^$', views.index, name='index'),
+	#url(r'^$', views.index, name='index'),
+	url(r'^$', views.ListRequirementsView.as_view(), name="requirement-list"),
+	url(r'^new$', views.CreateRequirementView.as_view(), name="requirement-new"),
+	url(r'^edit/(?P<pk>\d+)/$', views.UpdateRequirementView.as_view(), name='requirement-edit'),
 	url(r'^add_category/$', views.add_category, name='add_category'),
 	url(r'^add_test/$', views.add_test, name='add_test'),
 	url(r'^category/(?P<category_name_url>\w+)/$', views.category, name='category'),

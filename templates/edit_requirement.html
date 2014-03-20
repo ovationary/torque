@@ -4,11 +4,14 @@
 
 {% block body_block %}
 <div class="hero-unit">
+	{% if requirement.id %}
 	<h1>Edit Requirement</h1>
+	{% else %}
+	<h1>Add Requirement</h1>
+	{% endif %}
 	<br />
 	<div class="container">
-		<form id="category_form" method="post" action="{% url 'requirements-new' %}">
-
+		<form method="post" action="{{ action }}">
 
 			{% csrf_token %}
 			
@@ -18,7 +21,7 @@
 
 			<input id="save_requirement" type="submit" value="Save" />
 		</form>
-		<a href="{% url 'requirements-list' %}">Back to list.</a>
+		<a href="{% url 'requirement-list' %}">Back to list.</a>
 	</div>
 </div>
 

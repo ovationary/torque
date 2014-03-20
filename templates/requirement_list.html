@@ -1,0 +1,15 @@
+
+
+{% block content %}
+<h1>Requirements</h1>
+
+<ul>
+	{% for requirement in object_list %}
+	<li class="requirement">{{ requirement }} 
+		(<a href="{% url 'requirement-edit' pk=requirement.id %}">edit</a>)
+	</li>
+
+	{% endfor %}
+</ul>
+
+{% endblock %}

@@ -9,6 +9,41 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect 
 from django.contrib.auth.decorators import login_required 
 from datetime import datetime
+from django.views.generic import ListView, CreateView, UpdateView
+from django.core.urlresolvers import reverse
+
+
+
+class CreateRequirementView(CreateView):
+	model = Requirement
+	template_name="edit_requirement.html"
+
+	def get_success_url(self):
+		return reverse('requirement-list')
+
+	def get_context_data(self, **kwargs):
+		context = super(CreateRequirementView, self).get_context_data(**kwargs)
+		context['action'] = reverse('requirement-new')
+		return context
+
+class ListRequirementsView(ListView):
+	model = Requirement
+	template_name="requirement_list.html"
+
+class UpdateRequirementView(UpdateView):
+
+	model = Requirement
+	template_name = "edit_requirement.html"
+
+	def get_success_url(self):
+		return reverse("requirement-list")
+
+	def get_context_data(self, **kwargs):
+		context = super(UpdateRequirementView, self).get_context_data(**kwargs)
+		context['action'] = reverse('requirement-edit', kwargs={'pk': self.get_object().id})
+
+		return context
+		
 
 
 def index(request):
