@@ -1,4 +1,5 @@
 torque
 ======
 
-Requirements/Test Case Management Framework
+A Simple App for Requirements/Test Case Management 
+
